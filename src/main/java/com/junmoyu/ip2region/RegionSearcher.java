@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * IP to Region Searcher.
  *
  * @author 莫语
- * @date 2023/6/29
+ * @since 1.0.0
  */
 public final class RegionSearcher {
 
@@ -72,21 +72,6 @@ public final class RegionSearcher {
     }
 
     /**
-     * Closes the searcher object and releases resources. It is recommended to
-     * close the searcher when the service is shutting down, as the searcher
-     * is a global object and can be safely used in concurrent scenarios.
-     *
-     * @throws RuntimeException if an IOException occurs while closing the searcher.
-     */
-    public static void close() {
-        try {
-            SEARCHER.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
      * Converts a region string into a Region object.
      *
      * @param regionStr The region string to be converted.
@@ -107,15 +92,5 @@ public final class RegionSearcher {
         region.setCity("0".equals(regionSplit[3]) ? null : regionSplit[3]);
         region.setIsp("0".equals(regionSplit[4]) ? null : regionSplit[4]);
         return region;
-    }
-
-    public static void main(String[] args) {
-        Region regionByStringIp = RegionSearcher.getRegion("36.7.136.189");
-        System.out.println(regionByStringIp.toString());
-
-        Region regionByLongIp = RegionSearcher.getRegion(604473533L);
-        System.out.println(regionByLongIp.toString());
-
-        RegionSearcher.close();
     }
 }

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * The geographic region object associated with the IP address.
  *
  * @author 莫语
- * @date 2023/6/28
+ * @since 1.0.0
  */
 public class Region implements Serializable {
 
